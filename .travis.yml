@@ -11,7 +11,7 @@ install:
 - go get github.com/haya14busa/reviewdog/cmd/reviewdog
 script:
 - reviewdog -reporter=github-pr-check
-- go test -v -race ./...
+- go test -v -race $(go list ./... | grep -v /example/)
 
 env:
   global:
