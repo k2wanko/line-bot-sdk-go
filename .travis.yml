@@ -1,16 +1,18 @@
 language: go
 go:
-  - 1.7
-  - 1.8
-  - 1.9
-  - '1.10'
-  - tip
+- 1.7
+- 1.8
+- 1.9
+- '1.10'
+- tip
 sudo: false
-
 install:
-  - go get golang.org/x/lint/golint
-
+- go get golang.org/x/lint/golint
+- go get github.com/haya14busa/reviewdog/cmd/reviewdog
 script:
-  - golint $(go list ./... | grep -v /examples/)
-  - go vet $(go list ./... | grep -v /examples/)
-  - go test -v ./...
+- reviewdog -reporter=github-pr-check
+- go test -v -race ./...
+
+env:
+  global:
+    secure: oCFWqr5Hr5fdVLprd/ocbaI8DsVMCCUnoNdDxaHrS56T+h8idKWPKK4KYVP0y5GLqqoqNGqr56+FlRB/sDwxI/sUvXPP7w58ArRM0TPl0sUx9LV2JPaKcl/SKnpZi/0a5zP3VvwpXRE8Ny67p5wKHfzeJUrA3xst3V0FHGR66SrKDHzSRM1F/LFaNOhSEbHtawpPRmNWYDV6KqKB7SUL2LIf9d6N98gqVNzIwylD8PAPmYEa5+7ieZy6igtaaRTY14D6/MwW19iiwLG6tOYe7GlVccj+cshRhcy4sJoW9LUYGGaQ0leif7hu9oTVexCV9llOr82Z/OPx1Kv9g0xoM7qIw25p/PngNmRBNKl7qkQt4eIMnKuDRj9dOL9uolCJ3Y83ZfkPoS15OYvxuQnA4lOnTRzV8sPB0zjYaQvPVZX3SPTL8d/v2p0CQO7VTulo2Ofa8NCO8gA+sODEdc7Quv9dDN9an245HlGnIqfAmWGINmsNaGEvBsV3A/P58COlw46Q2ei1fIO0HFI6dTXhmfWVDBuMA3hjGwYZ87DK8yRJTnAV9njNog7I37Hhkg/mGVdrfkR2az3XVo+ZX7JjmNQuNPQtnA87VgH1Q+zoQcNE4u7ngc6drK9TtXPSAelPEjYMGtME5eo67s7w9wrinJnkE1xc4kuMAfFNyf6jY1A=
