@@ -258,10 +258,6 @@ type CarouselContainer struct {
 	Contents []*BubbleContainer `json:"contents"`
 }
 
-// implements FlexContainer interface
-func (*BubbleContainer) FlexContainer()   {}
-func (*CarouselContainer) FlexContainer() {}
-
 // BubbleStyle type
 type BubbleStyle struct {
 	Header *BlockStyle `json:"header,omitempty"`
@@ -370,3 +366,7 @@ func (*ImageComponent) FlexComponent()     {}
 func (*SeparatorComponent) FlexComponent() {}
 func (*SpacerComponent) FlexComponent()    {}
 func (*TextComponent) FlexComponent()      {}
+
+// implements FlexContainer interface
+func (*BubbleContainer) FlexContainer()   {}
+func (*CarouselContainer) FlexContainer() {}
